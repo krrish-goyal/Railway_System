@@ -1,1 +1,1 @@
-this branch is for edits regarding enquiry function
+so i have created dthis repository and there are 3 branches to it. one for each func. enquiry, booking and cancellation. save ur changes to the lib.c file in branches and we'll merge them to master at the end. Pay special attention to the asthetics of code. The sooner we start, the better we end.
