@@ -1,1 +1,1 @@
-this branch is for edits regarding enquiry function
+this branch is for edits regarding booking function
