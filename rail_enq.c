@@ -27,6 +27,9 @@ int enquiry(char *sou,char *des)
 	gotoxy(1,3);
 	if (!(strcmp(sou,"DELHI")))
 	{
+		printf("Train \tFrom  \tTo            \tDeparture\tArrival\tAvailability\n");
+		printf("Number\t      \t              \tTime     \tTime\n");
+		printf("---------------------------------------------------------------------\n");
 		for(i=0;i<15;i++)
 		{
 			if(!(strcmp(des,train[i].destn)))
@@ -63,11 +66,11 @@ int main(){
 		fscanf(fp,"%s",train[i].arr_time);
 		fscanf(fp,"%d",&train[i].seats_left);
 	}
-	for(i=0;i<43;i++)
+	/*for(i=0;i<43;i++)
 	{	
 		printf("%s\t%s\t%s\t%s\t%s\t%d\n",train[i].t_no,train[i].source,train[i].dept_time,train[i].destn,train[i].arr_time,train[i].seats_left);
-	}
-	/*do{
+	}*/
+	do{
 		choice=0;
 		system("clear");
 		gotoxy(18,1);
@@ -129,7 +132,7 @@ int main(){
 				getchar();
 		}
 	}while(!(choice==1 || choice==2 || choice==3 || choice==4));
-	*/
+	
 	return 0;	
 }
 
