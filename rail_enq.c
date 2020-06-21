@@ -13,8 +13,8 @@ struct trains
 
 struct passenger
 {
-	int PNR, t_no;
-	char psngr_name[40];
+	int PNR;
+	char psngr_name[40],t_no[5];
 };
 
 int enquiry(char *sou,char *des)
