@@ -27,17 +27,16 @@ int enquiry(char *sou,char *des)
 	gotoxy(1,3);
 	if (!(strcmp(sou,"DELHI")))
 	{
-		printf("Train \tFrom  \tTo            \tDeparture\tArrival\tAvailability\n");
-		printf("Number\t      \t              \tTime     \tTime\n");
-		printf("---------------------------------------------------------------------\n");
 		for(i=0;i<15;i++)
 		{
 			if(!(strcmp(des,train[i].destn)))
 			{
-				flag=1;
-				printf("Train \tFrom  \tTo            \tDeparture\tArrival\tAvailability\n");
-				printf("Number\t      \t              \tTime     \tTime\n");
-				printf("---------------------------------------------------------------------\n");
+				flag++;
+				if (flag==1){
+					printf("Train \tFrom  \tTo            \tDeparture\tArrival\tAvailability\n");
+					printf("Number\t      \t              \tTime     \tTime\n");
+					printf("---------------------------------------------------------------------\n");
+				}
 				printf("%s \t%s \t%s",train[i].t_no,train[i].source,train[i].destn);
 				gotoxy(35,6);
 				printf("%s     \t%s   \t\t%d\n",train[i].dept_time,train[i].arr_time,train[i].seats_left);
@@ -55,8 +54,7 @@ int main(){
 	int choice,i;
 	char s[80];
 	char d[80];
-	FILE *fp=fopen("train_list","r");
-	struct trains
+	FILE *fp=fopen("train_list","r"); 
 	for (i=0;i<43;i++)
 	{
 		fscanf(fp,"%s",train[i].t_no);
