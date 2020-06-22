@@ -78,11 +78,11 @@ int main(){
 		fscanf(fp,"%d",&train[i].seats_left);
 	}
 	fclose(fp);
-	for(i=0;i<43;i++)
+	/*for(i=0;i<43;i++)
 	{	
 		printf("%s\t%s\t%s\t%s\t%s\t%d\n",train[i].t_no,train[i].source,train[i].dept_time,train[i].destn,train[i].arr_time,train[i].seats_left);
-	}
-	/*do{
+	}*/
+	do{
 		choice=0;
 		system("clear");
 		gotoxy(18,1);
@@ -160,7 +160,7 @@ int main(){
 				getchar();
 		}
 	}while(!(choice==1 || choice==2 || choice==3 || choice==4));
-	*/
+	
 	return 0;	
 }
 
