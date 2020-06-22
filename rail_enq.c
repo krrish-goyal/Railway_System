@@ -8,11 +8,15 @@ void gotoxy(int x, int y) {
 
 struct trains
 {
+	char t_no[5];
+	char source[25];
+	char dept_time[4];
+	char destn[25];
+	char arr_time[4];
 	int seats_left;
-	char t_no[5],source[25],destn[25],dept_time[4],arr_time[4];
-};
+}train[43];
 
-struct passenger
+struct tickets
 {
 	int PNR;
 	char t_no[5],psngr_name[40];
@@ -27,42 +31,53 @@ int enquiry(char *sou,char *des)
 	gotoxy(1,3);
 	if (!(strcmp(sou,"DELHI")))
 	{
-		for(i=0;i<15;i++)
+		gotoxy(1,3);
+		for(i=0;i<43;i++)
 		{
 			if(!(strcmp(des,train[i].destn)))
 			{
-				flag=1;
-				printf("Train \tFrom  \tTo            \tDeparture\tArrival\tAvailability\n");
-				printf("Number\t      \t              \tTime     \tTime\n");
-				printf("---------------------------------------------------------------------\n");
-				printf("%s \t%s \t%s",train[i].t_no,train[i].source,train[i].destn);
-				gotoxy(35,6);
-				printf("%s     \t%s   \t\t%d\n",train[i].dept_time,train[i].arr_time,train[i].seats_left);
+				flag++;
+				if ( flag==1)
+				{
+					printf("Train \tFrom  \tTo            \tDeparture\tArrival\tAvailability\n");
+					printf("Number\t      \t              \tTime     \tTime\n");
+					printf("---------------------------------------------------------------------\n");
+				}
+				fprintf(stdout,"%s \t%s \t%s",train[i].t_no,train[i].source,train[i].dept_time);
+				fprintf(stdout,"%s     \t%s   \t\t%d\n",train[i].destn,train[i].arr_time,train[i].seats_left);
 			}
 		}
 		if (flag==0)
 			printf(">> No Train is available from %s to %s",sou,des);
+		//else
+		//	booking(sou,des);
 	}
 	else
 		printf(">> No Train is available from %s",sou);
 	return 0;
 }
 
+int booking(char *sou,char *des)
+{
+	system("clear");
+	gotoxy(28,1);
+	printf("--------ENQUIRY--------");
+}
 int main(){
 	int choice,i;
 	char s[80];
 	char d[80];
 	FILE *fp=fopen("train_list","r");
-	struct trains
 	for (i=0;i<43;i++)
 	{
-		fscanf(fp,"%s",train[i].t_no);
+		fscanf(fp,"%s    ",train[i].t_no);
 		fscanf(fp,"%s",train[i].source);
 		fscanf(fp,"%s",train[i].dept_time);
 		fscanf(fp,"%s",train[i].destn);
 		fscanf(fp,"%s",train[i].arr_time);
 		fscanf(fp,"%d",&train[i].seats_left);
 	}
+	fclose(fp);
 	for(i=0;i<43;i++)
 	{	
 		printf("%s\t%s\t%s\t%s\t%s\t%d\n",train[i].t_no,train[i].source,train[i].dept_time,train[i].destn,train[i].arr_time,train[i].seats_left);
@@ -115,7 +130,23 @@ int main(){
 				enquiry(s,d);
 				break;
 			case 2:
-				//booking();
+				system("clear");
+				gotoxy(28,1);
+				printf("--------BOOKING--------");
+				gotoxy(1,3);
+				printf(">> Enter Source : ");
+				fscanf(stdin,"%s",s);
+				for (i=0;i<strlen(s);i++)
+				{
+					s[i]=toupper(s[i]);
+				}
+				printf("\n>> Enter Destination : ");
+				fscanf(stdin,"%s",d);
+				for (i=0;i<strlen(d);i++)
+				{
+					d[i]=toupper(d[i]);
+				}
+				booking(s,d);
 				break;
 			case 3:
 				//cancellation();
