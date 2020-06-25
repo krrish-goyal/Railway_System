@@ -8,11 +8,7 @@ void gotoxy(int x, int y) {
 
 struct trains
 {
-	char t_no[5];
-	char source[25];
-	char dept_time[4];
-	char destn[25];
-	char arr_time[4];
+	char t_no[5],source[25],dept_time[4],destn[25],arr_time[4];
 	int seats_left;
 }train[43];
 
@@ -31,7 +27,6 @@ int enquiry(char *sou,char *des)
 	gotoxy(1,3);
 	if (!(strcmp(sou,"DELHI")))
 	{
-		gotoxy(1,3);
 		for(i=0;i<43;i++)
 		{
 			if(!(strcmp(des,train[i].destn)))
@@ -49,9 +44,15 @@ int enquiry(char *sou,char *des)
 		}
 		if (flag==0)
 			printf(">> No Train is available from %s to %s",sou,des);
-		//else
-		//	booking(sou,des);
-	}
+		else
+		{	printf(">> Do you want to book a train? (Y/n) : ");
+			scanf("%c",&yn);
+			if (yn==y || yn==Y)
+				booking(sou,des);
+		 	else
+				printf("Thank You! Happy Journey!");	
+		}
+	}	
 	else
 		printf(">> No Train is available from %s",sou);
 	return 0;
