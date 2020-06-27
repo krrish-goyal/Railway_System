@@ -15,10 +15,10 @@ struct trains
 	char t_no[5];		//train number
 	char source[25];
 	char dept_time[4];	//departure time
-	char destn[25];	//destination
+	char destn[25];		//destination
 	char arr_time[4]; 	//arrival time
-	int seats_left;	//number of seats left
-	//int fare;
+	int seats_left;		//number of seats left
+	int fare;
 }train[43];
 
 struct tickets
@@ -100,7 +100,7 @@ int booking(char *sou,char *des)
 					}
 					printf("%s \t%s \t%s",train[i].t_no,train[i].source,train[i].destn);
 					gotoxy(35,10);
-					printf("%s     \t%s   \t\t%d\t\n",train[i].dept_time,train[i].arr_time,train[i].seats_left);//train[i].fare
+					printf("%s     \t%s   \t\t%d\t%d\n",train[i].dept_time,train[i].arr_time,train[i].seats_left,train[i].fare);
 				}
 			}
 		}
@@ -129,7 +129,7 @@ int booking(char *sou,char *des)
 				printf("------------------------------------------------------------------------\n");
 				printf("%s \t%s \t%s",train[i].t_no,train[i].source,train[i].destn);
 				gotoxy(35,6);
-				printf("%s     \t%s   \t%d        \t\n",train[i].dept_time,train[i].arr_time,train[i].seats_left);//train[i].fare);
+				printf("%s     \t%s   \t%d        \t%d\n",train[i].dept_time,train[i].arr_time,train[i].seats_left,train[i].fare);
 				gotoxy(1,8);
 				printf(">> CONFIRM BOOKING ? (Y/n) : ");
 				scanf("%c",&yn);
