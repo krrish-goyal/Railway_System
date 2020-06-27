@@ -1,15 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-void gotoxy(int x, int y) {
+#include <string.h>			//For strcmp and other string functions
+#include <ctype.h>			//For toupper and other character functions
+void gotoxy(int x, int y) {             //gotoxy(x,y) puts the cursor at a desired location (x,y) on screen
     printf("%c[%d;%df", 0x1B, y, x);
 }
 
+int g=0;
+
 struct trains
 {
-	char t_no[5],source[25],dept_time[4],destn[25],arr_time[4];
-	int seats_left;
+	char t_no[5];		//train number
+	char source[25];
+	char dept_time[4];	//departure time
+	char destn[25];		//destination
+	char arr_time[4]; 	//arrival time
+	int seats_left;		//number of seats left
 }train[43];
 
 struct tickets
@@ -18,13 +24,14 @@ struct tickets
 	char t_no[5],psngr_name[40];
 };
 
+//************-enquiry() function-*************
 int enquiry(char *sou,char *des)
 {
 	int i,flag=0;
-	system("clear");
+	/*system("clear");
 	gotoxy(28,1);
-	printf("--------ENQUIRY--------");
-	gotoxy(1,3);
+	printf("--------ENQUIRY--------");*/
+	gotoxy(1,7);
 	if (!(strcmp(sou,"DELHI")))
 	{
 		for(i=0;i<43;i++)
@@ -47,10 +54,13 @@ int enquiry(char *sou,char *des)
 		else
 		{	printf(">> Do you want to book a train? (Y/n) : ");
 			scanf("%c",&yn);
-			if (yn==y || yn==Y)
+			if (yn=='y' || yn=='Y')
+			{
+				g=1;
 				booking(sou,des);
+			}
 		 	else
-				printf("Thank You! Happy Journey!");	
+				printf("Thank You!");	
 		}
 	}	
 	else
@@ -58,12 +68,7 @@ int enquiry(char *sou,char *des)
 	return 0;
 }
 
-int booking(char *sou,char *des)
-{
-	system("clear");
-	gotoxy(28,1);
-	printf("--------ENQUIRY--------");
-}
+// *************-main() function-************
 int main(){
 	int choice,i;
 	char s[80];
@@ -71,7 +76,7 @@ int main(){
 	FILE *fp=fopen("train_list","r");
 	for (i=0;i<43;i++)
 	{
-		fscanf(fp,"%s    ",train[i].t_no);
+		fscanf(fp,"%s",train[i].t_no);
 		fscanf(fp,"%s",train[i].source);
 		fscanf(fp,"%s",train[i].dept_time);
 		fscanf(fp,"%s",train[i].destn);
